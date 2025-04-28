@@ -1,0 +1,59 @@
+<div> — Block
+
+<span> — Inline
+
+<p> — Block
+
+<h1> to <h6> — Block
+
+<hr> — Block
+
+<br> — Inline
+
+<img> — Inline
+
+<a> — Inline
+
+<section> — Block
+
+<header> — Block
+
+<footer> — Block
+
+<nav> — Block
+
+<aside> — Block
+
+<article> — Block
+
+<ol> / <li> —
+
+<ol> — Block
+
+<li> — Block
+
+<ul> / <li> —
+
+<ul> — Block
+
+<li> — Block
+
+<strong> — Inline
+
+<i> — Inline
+
+<form> — Block
+
+<input> — Inline
+
+<textarea> — Inline
+
+<button> — Inline
+
+<select> / <option> —
+
+<select> — Inline
+
+<option> — Inline
+
+<label> — Inline
