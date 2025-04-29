@@ -1,0 +1,34 @@
+body {
+    background-color: #f0f8ff;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  
+  h1 {
+    color: darkblue;
+  }
+  
+  h2 {
+    color: darkgreen;
+    font-weight: bold;
+  }
+  
+  p::first-letter {
+    font-size: 150%;
+    font-weight: bold;
+  }
+  
+  a {
+    text-decoration: none;
+    color: navy;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  footer {
+    margin-top: 20px;
+    background-color: #e0f7fa;
+    padding: 10px;
+  }
+  
