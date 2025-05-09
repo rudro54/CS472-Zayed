@@ -12,6 +12,7 @@ async function fetchBooks()
        let result = await response.json()
        setBooks(result)
        setLoading(false)
+       setError(false);
   }
 
 
