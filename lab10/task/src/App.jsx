@@ -7,7 +7,7 @@ function App() {
   return (
     <BookProvider>
       <div className="App">
-        <h1>Library Manager</h1>
+        <h1>Lab 10 Book CRUD Management</h1>
         <AddBookForm />
         <BookList />
       </div>
