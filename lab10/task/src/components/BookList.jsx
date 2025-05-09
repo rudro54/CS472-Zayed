@@ -1,40 +1,33 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
+import { useBookContext } from '../context/BookContext';
+import EditBookForm from './EditBookForm';
 
 function BookList() {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true); // optional loading state
-  const [error, setError] = useState(null);     // optional error state
+  const { books, loading, error, deleteBook } = useBookContext();
+  const [editingId, setEditingId] = useState(null);
 
-async function fetchBooks()
-  {
-       let response = await fetch('https://67d17ef590e0670699ba5929.mockapi.io/books')
-       let result = await response.json()
-       setBooks(result)
-       setLoading(false)
-       setError(false);
-  }
-
-
-  useEffect(() => {
-   fetchBooks();
-  }, []);
-
-  if (loading) return <p>Loading books...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <div>
-      <h2>Book List</h2>
-      <ul>
+      <h3>Book List</h3>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
         {books.map(book => (
-          <li key={book.id}>
-            <strong>{book.title}</strong> by {book.author}
-            <button>Edit</button>
-            <button>Delete</button>
-          </li>
+          <div key={book.id} style={{ border: '1px solid gray', padding: '1rem' }}>
+            {editingId === book.id ? (
+              <EditBookForm book={book} onCancel={() => setEditingId(null)} />
+            ) : (
+              <>
+                <h4>{book.title}</h4>
+                <p>{book.author}</p>
+                <button onClick={() => setEditingId(book.id)}>Edit</button>
+                <button onClick={() => deleteBook(book.id)}>Delete</button>
+              </>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
