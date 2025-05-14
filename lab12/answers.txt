@@ -1,0 +1,14 @@
+What is Libuv ?
+Answer : Libuv is a multi platform support library with a focus on asynchronous I/O.
+It does maintain Node JS's asynchronous file and file system operations. Libuv is
+originally developed to provide asynchronous I/O that includes asynchronous TCP &
+UDP sockets, (famous) event loop, asynchronous DNS resolution, file system read / write
+and etc. Libuv is wrtitten in C. 
+
+2. Explain the difference between setImmediate(f) and setTimeout(f, Time)?
+Answer : setImmediate executes in the check phase of the event loop and setTimeout
+executes in the timers phase . setImmediate executes after I/O events , when you
+want to run a callback I/O. setTimeout executes after a minimum delay >=1ms when 
+you want to callback after a dealy. 
+
+3.
