@@ -7,7 +7,7 @@ function Student(studentId, answers = []) {
 
 }
 
-Student['addAnswer']=function(){console.log('got answer')};
+Student.addAnswer=function(){console.log('got answer')};
 
 
 let s= new Student("x7");
