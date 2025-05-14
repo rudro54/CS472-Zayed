@@ -11,4 +11,24 @@ executes in the timers phase . setImmediate executes after I/O events , when you
 want to run a callback I/O. setTimeout executes after a minimum delay >=1ms when 
 you want to callback after a dealy. 
 
-3.
+
+3.Explain the difference between process.nextTick(f) and setImmediate(f)?
+Answer : process.nextTick(f) runs before the event loop continues(microtask queue) and setImmediate(f)
+runs in the check phase of the event loop. process.nextTick() executes setImmediately after current 
+operations, even before promises where as setImmediate executes after I/O and timers . process.nextTick
+used for critical urgent logic after current task but before any I/O . setImmediate schedule logic after
+I/O events . 
+
+
+Output : 
+nextTick 1
+Promise.resolve 1
+Promise.resolve 2
+nextTick inside Promise
+this is setTimeout
+data printout (input text)
+this is setImmediate 1
+this is setImmediate 2
+Promise.resolve inside setImmediate
+readablStream close event
+this is setTimeout
