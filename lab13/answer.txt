@@ -92,18 +92,8 @@ Blocking: Halts execution until file is fully read
 Good for small files or startup config
 Not recommended in production servers
 
-Code : 
-import fs from 'fs';
 
-try {
-  const data = fs.readFileSync('./files/input.txt', 'utf-8');
-  console.log('Sync Read:', data);
-} catch (err) {
-  console.error('Error reading file synchronously:', err);
-}
-
-
- fs.readFile() — Asynchronous with Callback
+fs.readFile() — Asynchronous with Callback
 
 Usage : 
 
@@ -117,17 +107,28 @@ Non-blocking
 Uses callback style
 May lead to callback nesting if chained poorly
 
-Code : 
+fs.promises.readFile() — Asynchronous with Promises
 
-import fs from 'fs';
-
-fs.readFile('./files/input.txt', 'utf-8', (err, data) => {
-  if (err) {
-    console.error('Error reading file asynchronously:', err);
-  } else {
-    console.log('Async Read (Callback):', data);
-  }
-});
+Usage :
+You prefer async/await
+Need clean, promise-based syntax
 
 
+Main Points : 
+Non-blocking
+Promise-based (cleaner async control)
+Recommended in modern async code
 
+
+fs.createReadStream() — Streaming
+
+Usage :
+You need to handle large files efficiently
+Want to process data in chunks
+
+
+Main Points : 
+
+Efficient for large files
+Doesn’t load entire file into memory
+Event-driven (emit data, end, error)
