@@ -77,3 +77,29 @@ const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+
+Question 3 
+
+fs.readFileSync() — Synchronous, Blocking
+
+usage : 
+You need to read files during startup or one-time setup
+Blocking is acceptable (e.g., CLI tools)
+
+Main Points : 
+Blocking: Halts execution until file is fully read
+Good for small files or startup config
+Not recommended in production servers
+
+code : 
+import fs from 'fs';
+
+try {
+  const data = fs.readFileSync('./files/input.txt', 'utf-8');
+  console.log('Sync Read:', data);
+} catch (err) {
+  console.error('Error reading file synchronously:', err);
+}
+
+
