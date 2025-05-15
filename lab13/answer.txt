@@ -4,3 +4,76 @@ nextTick promise setTimeout setImmediate file content
 
 ES module output
 promise nextTick setImmediate setTimeout file content
+
+
+Question Two 
+
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+
+// Convert module URL to file path
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Create HTTP Server
+const server = http.createServer((req, res) => {
+  const method = req.method;
+  const pathname = req.url;
+
+  if (method === 'GET' && (pathname === '/' || pathname === '/home')) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Welcome to my website');
+  }
+
+  else if (method === 'GET' && pathname === '/image') {
+    const imgPath = path.join(__dirname, 'files', 'image.jpg');
+    fs.readFile(imgPath, (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading image');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.end(data);
+      }
+    });
+  }
+
+  else if (method === 'GET' && pathname === '/pdf') {
+    const pdfPath = path.join(__dirname, 'files', 'document.pdf');
+    fs.readFile(pdfPath, (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading PDF');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'application/pdf' });
+        res.end(data);
+      }
+    });
+  }
+
+  else if (method === 'GET' && pathname === '/about') {
+    const txtPath = path.join(__dirname, 'files', 'about.txt');
+    fs.readFile(txtPath, 'utf-8', (err, data) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading text file');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end(data);
+      }
+    });
+  }
+
+  else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404 Not Found');
+  }
+});
+
+// Start server
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
