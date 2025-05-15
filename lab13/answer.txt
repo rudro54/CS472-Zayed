@@ -83,7 +83,7 @@ Question 3
 
 fs.readFileSync() — Synchronous, Blocking
 
-usage : 
+Usage : 
 You need to read files during startup or one-time setup
 Blocking is acceptable (e.g., CLI tools)
 
@@ -92,7 +92,7 @@ Blocking: Halts execution until file is fully read
 Good for small files or startup config
 Not recommended in production servers
 
-code : 
+Code : 
 import fs from 'fs';
 
 try {
@@ -101,5 +101,33 @@ try {
 } catch (err) {
   console.error('Error reading file synchronously:', err);
 }
+
+
+ fs.readFile() — Asynchronous with Callback
+
+Usage : 
+
+You want non-blocking behavior
+Simple, traditional async method
+
+Main Points : 
+
+Characteristics:
+Non-blocking
+Uses callback style
+May lead to callback nesting if chained poorly
+
+Code : 
+
+import fs from 'fs';
+
+fs.readFile('./files/input.txt', 'utf-8', (err, data) => {
+  if (err) {
+    console.error('Error reading file asynchronously:', err);
+  } else {
+    console.log('Async Read (Callback):', data);
+  }
+});
+
 
 
